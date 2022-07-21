@@ -81,7 +81,7 @@
                 <div class="row">
                   <div class="col text-center">
                     <router-link
-                      to="/forgotPass"
+                      to="/auth/forgotpassword"
                       class="text-weight-regular"
                     >Forgot password ?
                     </router-link>
@@ -95,64 +95,6 @@
     </q-page-container>
   </q-layout>
 </template>
-
-<!--<template>-->
-<!--  <q-layout class="bg-blue-grey-1" view="hHh Lpr lFf">-->
-<!--    <q-page-container>-->
-<!--      <q-page padding class="row items-center justify-center">-->
-<!--        <div class="row full-width">-->
-<!--          <div class="col-md-8 offset-md-2 col-xs-12 q-pl-md q-pr-md q-pt-sm">-->
-<!--            <q-card flat class="bg-white text-black">-->
-<!--              <div class="row">-->
-<!--                <div class="col-md-6 col-xs-12">-->
-<!--                  <div class="row q-pt-md q-pb-md bg-white">-->
-<!--                    <div class="col-md-8 offset-2 col-xs-8">-->
-<!--                      <q-img spinner-color="white" placeholder-src="assets/loginImg.png" src="~assets/loginImg.png"></q-img>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                <div class="col-md-6 col-xs-12 q-pt-md">-->
-<!--                  <div class="q-pa-md">-->
-<!--                    <div class="text-blue-grey-14 text-h4">Login</div>-->
-<!--                    <q-card-section class="text-blue-grey-14"></q-card-section>-->
-<!--                    <q-form-->
-<!--                      @submit="onSubmit"-->
-<!--                      class="q-gutter-md"-->
-<!--                    >-->
-<!--                      <q-input-->
-<!--                        filled-->
-<!--                        v-model="form.email"-->
-<!--                        label="E-mail"-->
-<!--                        hint="E-mail"-->
-<!--                        lazy-rules-->
-<!--                        :rules="[ val => val && val.length > 0 || 'Data tidak boleh kosong']"-->
-<!--                      />-->
-
-<!--                      <q-input-->
-<!--                        filled-->
-<!--                        type="password"-->
-<!--                        v-model="form.password"-->
-<!--                        label="Password"-->
-<!--                        lazy-rules-->
-<!--                        :rules="[ val => val && val.length > 0 || 'Data tidak boleh kosong']"-->
-<!--                      />-->
-
-<!--                      <div>-->
-<!--                        <q-btn label="Login" type="submit" color="primary"/>-->
-<!--                        <q-btn label="Registrasi" to="/auth/registrasi" color="primary" flat class="q-ml-sm" />-->
-<!--                      </div>-->
-<!--                    </q-form>-->
-
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </q-card>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </q-page>-->
-<!--    </q-page-container>-->
-<!--  </q-layout>-->
-<!--</template>-->
 
 <script>
 // import { useQuasar } from 'quasar'
@@ -169,12 +111,23 @@ export default {
     const accept = ref(false)
     // const $q = useQuasar()
 
+    // eslint-disable-next-line no-unused-vars
+    let timer
+
     return {
       form: {
         email,
         password
       },
       accept,
+      showLoading () {
+        this.$q.loading.show()
+
+        timer = setTimeout(() => {
+          this.$q.loading.hide()
+          timer = void 0
+        }, 2000)
+      },
 
       isPwd: ref(true)
 
@@ -186,12 +139,12 @@ export default {
         email: this.form.email,
         password: this.form.password
       }).then(res => {
-        console.log(res)
-        if ((res.response.data.error)) {
-          console.log('error wooooii')
-        }
+        // console.log(res.data.data)
+        this.$q.localStorage.set('datauser', res.data)
+        this.$router.push('/pmb')
       }).catch(err => {
         if ((err.response.data.error)) {
+          console.log(err.response.data.data.email)
           this.$q.notify({
             color: 'negative',
             message: err.response.data.message,

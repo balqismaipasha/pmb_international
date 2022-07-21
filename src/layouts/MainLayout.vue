@@ -1,12 +1,12 @@
 <template>
   <q-layout view="lHh Lpr lFf">
 
-    <q-header class="bg-green-3 text-blue-grey-14">
+    <q-header class="bg-green-8 text-blue-grey-14">
       <q-toolbar>
-        <q-btn dense flat round icon="menu" @click="left = !left"/>
+        <q-btn dense flat round icon="menu" style="font-size: 20px;color: lightgoldenrodyellow" @click="left = !left"/>
 
         <q-toolbar-title></q-toolbar-title>
-        <q-btn flat round dense icon="person" style="font-size: 20px;">
+        <q-btn flat round dense icon="person" style="font-size: 20px;color: lightgoldenrodyellow">
           <q-menu>
             <div class="row no-wrap q-pa-lg">
               <div class="column">
@@ -32,7 +32,7 @@
                 <div class="text-subtitle1 q-mt-md q-mb-xs"></div>
                 <q-btn
                   color="teal"
-                  label="Keluar"
+                  label="Log Out"
                   unelevated
                   @click="keluar()"
                   size="sm"
@@ -54,7 +54,7 @@
     >
       <q-scroll-area class="fit">
         <q-list>
-          <q-item style="height: 50px;" class="bg-amber-6 text-bold text-center">
+          <q-item style="height: 50px;" class="bg-green-3 text-bold text-center">
             <q-item-section>
               KUIK APP INTERNATIONAL
             </q-item-section>
@@ -74,12 +74,12 @@
           >
             Registration
           </q-item-label>
-          <q-item clickable active-class="active" class="text-teal-10" exact v-ripple to="/">
+          <q-item clickable active-class="active" class="text-teal-10" exact v-ripple to="/registration">
             <q-item-section avatar>
-              <q-icon name="table_chart"/>
+              <q-icon name="list"/>
             </q-item-section>
             <q-item-section>
-              Registration Data
+              Registration
             </q-item-section>
           </q-item>
 
@@ -96,24 +96,31 @@
             header
             class="text-grey-8"
           >
-            Transaksi
+            Setting
           </q-item-label>
 
           <q-item clickable active-class="active" class="text-teal-10" exact v-ripple to="/datatransaksi">
             <q-item-section avatar>
-              <q-icon name="attach_money"/>
+              <q-icon name="person"/>
             </q-item-section>
             <q-item-section>
-              Data Transaksi
+              Profile
             </q-item-section>
           </q-item>
 
         </q-list>
       </q-scroll-area>
     </q-drawer>
-    <q-page-container class="bg-grey-2">
+    <q-page-container>
       <router-view/>
     </q-page-container>
+
+    <q-footer reveal elevated class="bg-amber-7">
+      <span class="text-body2 text-weight-bold text-grey-1">
+        © 2022 Universitas Islam Riau Dikembangkan oleh Biro Sistem Informasi
+        dan Komputasi
+      </span>
+    </q-footer>
   </q-layout>
 </template>
 
@@ -124,15 +131,15 @@ export default {
 
   data () {
     return {
-      left: false
-      // dataUser: this.$q.localStorage.getItem('datauser')
+      left: false,
+      dataUser: this.$q.localStorage.getItem('datauser')
     }
   },
   methods: {
-    // keluar () {
-    //   this.$q.localStorage.clear()
-    //   this.$router.push('auth/login')
-    // }
+    keluar () {
+      this.$q.localStorage.clear()
+      this.$router.push('auth/login')
+    }
   }
 }
 </script>

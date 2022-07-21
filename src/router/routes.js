@@ -1,10 +1,13 @@
 
 const routes = [
   {
-    path: '/main',
+    path: '/pmb',
     component: () => import('layouts/MainLayout.vue'),
+    meta: {
+      autentikasi: true
+    },
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') }
+      { path: '', component: () => import('pages/StudentRegistration') }
     ]
   },
 

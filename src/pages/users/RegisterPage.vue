@@ -50,6 +50,7 @@
                 v-model="form.password"
                 label="Password"
                 type="password"
+                class="pswrd"
                 filled
                 :rules="[
                   (val) =>
@@ -58,12 +59,13 @@
                 ]"
               ></q-input>
 
-<!--              <q-input-->
-<!--                rounded-->
-<!--                label="Password Confirm"-->
-<!--                type="password"-->
-<!--                filled-->
-<!--              ></q-input>-->
+              <q-input
+                label="Password Confirm"
+                v-model="form.cpassword"
+                type="password"
+                class="cpswrd"
+                filled
+              ></q-input>
 
               <q-card-actions align="center">
                 <q-btn
@@ -102,6 +104,7 @@ export default {
     // eslint-disable-next-line camelcase
     const no_hp = ref(null)
     const password = ref(null)
+    const cpassword = ref(null)
     const accept = ref(false)
 
     return {
@@ -109,22 +112,40 @@ export default {
         email,
         // eslint-disable-next-line camelcase
         no_hp,
-        password
+        password,
+        cpassword
       },
       accept
     }
   },
   methods: {
     onSubmit: function () {
-      api.post('/api/registration/new-user', {
-        email: this.form.email,
-        no_hp: this.form.no_hp,
-        password: this.form.password
-      }).then(res => {
-        console.log(res.data.data)
-        this.$q.localStorage.set('userpmb', res.data.data)
-        this.$router.push('infoverification')
-      })
+      if (this.form.password === this.form.cpassword) {
+        this.$q.notify({
+          color: 'negative',
+          message: 'Password does not match',
+          icon: 'ion-close'
+        })
+      } else if (this.form.password !== this.form.cpassword) {
+        api.post('/api/registration/new-user', {
+          email: this.form.email,
+          no_hp: this.form.no_hp,
+          password: this.form.password
+        }).then(res => {
+          console.log(res.data.data)
+          this.$q.localStorage.set('datauser', res.data.data)
+          this.$router.push('infoverification')
+        }).catch(err => {
+          if ((err.response.data.error)) {
+            console.log(err.response.data.data.email)
+            this.$q.notify({
+              color: 'negative',
+              message: err.response.data.message,
+              icon: 'ion-close'
+            })
+          }
+        })
+      }
     }
   }
 }

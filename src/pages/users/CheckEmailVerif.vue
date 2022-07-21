@@ -20,6 +20,9 @@
               <q-item-label caption>
                 Your verification link has been sent to email
               </q-item-label>
+              <q-item-label caption>
+                {{ dataUser.email }}
+              </q-item-label>
               <br>
               <q-item-label caption>
                 Just click on the link in that email to complete your signup.
@@ -50,9 +53,9 @@
 export default ({
   name: 'CheckEmailVerif',
 
-  setup () {
+  data () {
     return {
-      dataUser: this.$q.localStorage.getItem('userpmb')
+      dataUser: this.$q.localStorage.getItem('datauser')
     }
   }
 })
