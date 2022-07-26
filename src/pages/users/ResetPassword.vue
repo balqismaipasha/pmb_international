@@ -1,6 +1,6 @@
 <template>
   <q-layout
-    class="bgim"
+    class="bg-image"
     v-cloak
   >
     <q-page-container>
@@ -82,8 +82,8 @@
                   push
                   label="Reset Password"
                   type="submit"
-                  class="text-capitalize"
-                  color="primary"
+                  class="text-capitalize text-white"
+                  style="background-color: green"
                 ></q-btn>
               </q-card-actions>
 

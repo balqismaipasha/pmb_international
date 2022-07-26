@@ -88,7 +88,9 @@ module.exports = configure(function (ctx) {
     // },
 
     devServer: {
-      https: false,
+      server: {
+        type: 'http'
+      },
       port: 8081,
       open: true, // opens browser window automatically
       allowedHosts: ['panel.pps.webuir.com'],

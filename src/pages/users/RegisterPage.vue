@@ -12,7 +12,7 @@
           </q-card-section>
 
           <q-card-section>
-            <div class="text-center q-pt-lg">
+            <div class="text-center q-pt-lg" style="font-family: sans-serif">
               <div class="col text-h6 ellipsis">
                 <div class="text-bold">PMB International</div>
                 <div class="text-weight-regular text-green-8">
@@ -32,26 +32,29 @@
             <q-form class="q-gutter" @submit="onSubmit()">
               <q-input
                 v-model="form.email"
-                filled
+                filled dense
                 type="email"
-                label="Email Address"
+                label="Email Address*"
+                hint="Alamat Email"
                 :rules="[(val) => !!val || 'Email is missing']"
               ></q-input>
 
               <q-input
                 v-model="form.no_hp"
-                filled
+                filled dense
                 type="number"
-                label="Whatsapp Number"
+                label="Whatsapp Number*"
+                hint="Nomor Whatsapp"
                 :rules="[(val) => !!val || 'Whatsapp number is missing']"
               ></q-input>
 
               <q-input
                 v-model="form.password"
-                label="Password"
+                label="Password*"
+                hint="Password"
                 type="password"
                 class="pswrd"
-                filled
+                filled dense
                 :rules="[
                   (val) =>
                     (val && val.length > 0 && val.length <= 8) ||
@@ -61,10 +64,11 @@
 
               <q-input
                 label="Password Confirm"
+                hint="Konfirmasi Password"
                 v-model="form.cpassword"
                 type="password"
                 class="cpswrd"
-                filled
+                filled dense
               ></q-input>
 
               <q-card-actions align="center">
@@ -72,8 +76,8 @@
                   rounded
                   type="submit"
                   label="REGISTER"
-                  class="text-capitalize text-bold full-width"
-                  color="amber-9"
+                  class="text-capitalize text-white full-width"
+                  style="background-color: green"
                 ></q-btn>
               </q-card-actions>
 

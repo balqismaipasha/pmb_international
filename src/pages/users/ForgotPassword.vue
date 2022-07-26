@@ -37,8 +37,8 @@
                   push
                   label="Set Password Reset Link"
                   type="submit"
-                  class="text-capitalize"
-                  color="primary"
+                  class="text-capitalize text-white"
+                  style="background-color: green"
                 ></q-btn>
               </q-card-actions>
             </q-form>

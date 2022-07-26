@@ -1,19 +1,19 @@
 <template>
   <q-layout view="lHh Lpr lFf">
 
-    <q-header class="bg-green-8 text-blue-grey-14">
+    <q-header class="text-blue-grey-14" style="background-color: #09581b">
       <q-toolbar>
-        <q-btn dense flat round icon="menu" style="font-size: 20px;color: lightgoldenrodyellow" @click="left = !left"/>
+        <q-btn dense flat round icon="menu" style="font-size: 20px;color: white" @click="left = !left"/>
 
         <q-toolbar-title></q-toolbar-title>
-        <q-btn flat round dense icon="person" style="font-size: 20px;color: lightgoldenrodyellow">
+        <q-btn flat round dense icon="person" style="font-size: 20px;color: white">
           <q-menu>
             <div class="row no-wrap q-pa-lg">
               <div class="column">
                 <q-item-label class="text-h6">Account</q-item-label>
                 <q-linear-progress class="q-mb-lg" :value="100" color="grey-4" style="height: 2px"/>
                 <div class="items-center">
-                  <div class="text-bold items-center">balqismaipasha</div>
+                  <div class="text-bold items-xs-center">balqismaipasha</div>
                   <div>Balqis Maipasha</div>
                 </div>
               </div>
@@ -22,16 +22,13 @@
 
               <div class="column items-center">
                 <q-btn flat round dense>
-                  <q-avatar size="72px">
-                    <img src="https://placeimg.com/500/300/nature">
+                  <q-avatar size="90px">
+                    <img src="../assets/logo_uir.png" alt="Logo uir">
                   </q-avatar>
                 </q-btn>
 
-                <div class="text-subtitle1 q-mt-md q-mb-xs"></div>
-                <div class="text-subtitle1 q-mt-md q-mb-xs"></div>
-                <div class="text-subtitle1 q-mt-md q-mb-xs"></div>
                 <q-btn
-                  color="teal"
+                  color="green-9"
                   label="Log Out"
                   unelevated
                   @click="keluar()"
@@ -54,15 +51,15 @@
     >
       <q-scroll-area class="fit">
         <q-list>
-          <q-item style="height: 50px;" class="bg-green-3 text-bold text-center">
-            <q-item-section>
-              KUIK APP INTERNATIONAL
+          <q-item style="height: 50px;" class="bg-green-9 text-bold text-white text-center">
+            <q-item-section style="font-size: medium">
+              PMB INTERNATIONAL
             </q-item-section>
           </q-item>
           <q-item class="justify-center bg-grey-4 text-center q-mb-md q-pt-md">
             <div>
               <q-avatar size="100px" class="q-mb-md">
-                <img src="https://placeimg.com/500/300/nature" alt="">
+                <img src="../assets/logo_uir.png" alt="Logo uir">
               </q-avatar>
               <div class="text-weight-bold">balqismaipasha</div>
               <div>Balqis Maipasha</div>
@@ -74,23 +71,14 @@
           >
             Registration
           </q-item-label>
-          <q-item clickable active-class="active" class="text-teal-10" exact v-ripple to="/registration">
+          <q-item clickable active-class="active" class="text-teal-10" exact v-ripple to="/pmb">
             <q-item-section avatar>
-              <q-icon name="list"/>
+              <q-icon name="app_registration"/>
             </q-item-section>
             <q-item-section>
-              Registration
+              Enrollment
             </q-item-section>
           </q-item>
-
-<!--          <q-item clickable active-class="active" class="text-teal-10" exact v-ripple to="/tambahbuku">-->
-<!--            <q-item-section avatar>-->
-<!--              <q-icon name="edit"/>-->
-<!--            </q-item-section>-->
-<!--            <q-item-section>-->
-<!--              Input Data Buku-->
-<!--            </q-item-section>-->
-<!--          </q-item>-->
 
           <q-item-label
             header
@@ -101,7 +89,7 @@
 
           <q-item clickable active-class="active" class="text-teal-10" exact v-ripple to="/datatransaksi">
             <q-item-section avatar>
-              <q-icon name="person"/>
+              <q-icon name="manage_accounts"/>
             </q-item-section>
             <q-item-section>
               Profile
@@ -115,7 +103,7 @@
       <router-view/>
     </q-page-container>
 
-    <q-footer reveal elevated class="bg-amber-7">
+    <q-footer reveal elevated style="background-color: #034713">
       <span class="text-body2 text-weight-bold text-grey-1">
         © 2022 Universitas Islam Riau Dikembangkan oleh Biro Sistem Informasi
         dan Komputasi
@@ -137,6 +125,11 @@ export default {
   },
   methods: {
     keluar () {
+      this.$q.notify({
+        color: 'positive',
+        message: 'You are log out',
+        icon: 'check_circle'
+      })
       this.$q.localStorage.clear()
       this.$router.push('auth/login')
     }

@@ -20,7 +20,7 @@
             </q-avatar>
           </q-card-section>
           <q-card-section>
-            <div class="text-center q-pt-lg">
+            <div class="text-center q-pt-lg" style="font-family: sans-serif">
               <div class="col text-h6 ellipsis">
                 <div class="text-bold">PMB International</div>
                 <div class="text-weight-regular text-green-8">
@@ -67,11 +67,11 @@
               <br>
               <div>
                 <q-btn
-                  class="full-width"
+                  class="full-width text-white"
                   rounded
-                  label="Login"
+                  label="LOGIN"
                   type="submit"
-                  color="amber-9"
+                  style="background-color: green"
                 />
                 <q-btn label="Register" to="/auth/registrasi" color="primary" flat class="q-ml-sm full-width" />
               </div>
@@ -140,6 +140,12 @@ export default {
         password: this.form.password
       }).then(res => {
         // console.log(res.data.data)
+        this.$q.notify({
+          color: 'positive',
+          message: 'Welcome',
+          icon: 'check_circle',
+          position: 'top-right'
+        })
         this.$q.localStorage.set('datauser', res.data)
         this.$router.push('/pmb')
       }).catch(err => {
@@ -148,7 +154,7 @@ export default {
           this.$q.notify({
             color: 'negative',
             message: err.response.data.message,
-            icon: 'ion-close'
+            icon: 'warning'
           })
         }
       })

@@ -73,6 +73,7 @@
                 class="full-width"
                 v-model="card_detail.name"
                 label="Full Name*"
+                hint="Nama Lengkap"
               />
             </q-item>
           </div>
@@ -84,41 +85,42 @@
                 class="full-width"
                 v-model="address_detail.card_number"
                 label="Place of Birth*"
+                hint="Tempat Lahir"
               />
             </q-item>
           </div>
           <div class="col-6">
-            <q-item style="max-height: 10px">
-              <q-input
-                class="full-width"
-                label="Date of Birth*"
-                dense
-                outlined
-                v-model="date"
-                mask="date"
-                :rules="['date']"
-              >
-                <template v-slot:append>
-                  <q-icon name="event" class="cursor-pointer">
-                    <q-popup-proxy
-                      cover
-                      transition-show="scale"
-                      transition-hide="scale"
-                    >
-                      <q-date v-model="date">
-                        <div class="row items-center justify-end">
-                          <q-btn
-                            v-close-popup
-                            label="Close"
-                            color="primary"
-                            flat
-                          />
-                        </div>
-                      </q-date>
-                    </q-popup-proxy>
-                  </q-icon>
-                </template>
-              </q-input>
+            <q-item>
+              <q-input v-model="birthday" label="Date of Birth*" dense outlined class="full-width" type="date" hint="Tanggal Lahir" />
+<!--              <q-input-->
+<!--                class="full-width"-->
+<!--                label="Date of Birth*"-->
+<!--                dense-->
+<!--                outlined-->
+<!--                v-model="date"-->
+<!--                :rules="['date']"-->
+<!--              >-->
+<!--                <template v-slot:append>-->
+<!--                  <q-icon name="event" class="cursor-pointer">-->
+<!--                    <q-popup-proxy-->
+<!--                      cover-->
+<!--                      transition-show="scale"-->
+<!--                      transition-hide="scale"-->
+<!--                    >-->
+<!--                      <q-date v-model="date">-->
+<!--                        <div class="row items-center justify-end">-->
+<!--                          <q-btn-->
+<!--                            v-close-popup-->
+<!--                            label="Close"-->
+<!--                            color="primary"-->
+<!--                            flat-->
+<!--                          />-->
+<!--                        </div>-->
+<!--                      </q-date>-->
+<!--                    </q-popup-proxy>-->
+<!--                  </q-icon>-->
+<!--                </template>-->
+<!--              </q-input>-->
             </q-item>
           </div>
           <div class="col-6">
@@ -130,9 +132,10 @@
                 class="full-width"
                 :options="optionswarga"
                 label="- Citizenship  -"
+                hint="Kewarganegaraan"
               />
-              <q-checkbox v-model="checkMale" label="Male"/>
-              <q-checkbox v-model="checkFemale" label="Female"/>
+              <q-radio v-model="rGender" val="male" label="Male" />
+              <q-radio v-model="rGender" val="female" label="Female" />
             </q-item>
           </div>
           <div class="col-6">
@@ -143,6 +146,7 @@
                 outlined
                 type="number"
                 label="Phone Number*"
+                hint="Nomor Hp"
               ></q-input>
             </q-item>
           </div>
@@ -154,6 +158,7 @@
                 outlined
                 type="number"
                 label="Whatsapp Number*"
+                hint="Nomor Whatsapp"
               ></q-input>
             </q-item>
           </div>
@@ -166,6 +171,7 @@
                 type="textarea"
                 rows="2"
                 label="Correspondence Address*"
+                hint="Alamat Korespondensi"
               ></q-input>
             </q-item>
           </div>
@@ -178,6 +184,7 @@
                 type="textarea"
                 rows="2"
                 label="Address in Indonesia*"
+                hint="Alamat di Indonesia"
               ></q-input>
             </q-item>
           </div>
@@ -189,6 +196,7 @@
                 outlined
                 type="number"
                 label="Postcode*"
+                hint="Kode Pos"
               ></q-input>
             </q-item>
           </div>
@@ -200,6 +208,7 @@
                 outlined
                 type="text"
                 label="City Town*"
+                hint="Kota"
               ></q-input>
             </q-item>
           </div>
@@ -211,6 +220,7 @@
                 outlined
                 type="text"
                 label="State/ Country *"
+                hint="Negara"
               ></q-input>
             </q-item>
           </div>
@@ -219,7 +229,7 @@
               <q-input
                 dense
                 class="full-width"
-                standout
+                outlined
                 v-model="email"
                 type="email"
                 prefix="Email:"
@@ -239,41 +249,44 @@
                 outlined
                 type="number"
                 label="Passport Number"
+                hint="Nomor Passport"
               ></q-input>
             </q-item>
           </div>
           <div class="col-6">
-            <q-item style="max-height: 10px">
-              <q-input
-                class="full-width"
-                label="Passport Expiry Date"
-                dense
-                outlined
-                v-model="date"
-                mask="date"
-                :rules="['date']"
-              >
-                <template v-slot:append>
-                  <q-icon name="event" class="cursor-pointer">
-                    <q-popup-proxy
-                      cover
-                      transition-show="scale"
-                      transition-hide="scale"
-                    >
-                      <q-date v-model="datee">
-                        <div class="row items-center justify-end">
-                          <q-btn
-                            v-close-popup
-                            label="Close"
-                            color="primary"
-                            flat
-                          />
-                        </div>
-                      </q-date>
-                    </q-popup-proxy>
-                  </q-icon>
-                </template>
-              </q-input>
+            <q-item>
+              <q-input v-model="passdate" label="Passport Expiry Date" dense outlined class="full-width" type="date" hint="Tanggal batas passport" />
+
+              <!--              <q-input-->
+<!--                class="full-width"-->
+<!--                label="Passport Expiry Date"-->
+<!--                dense-->
+<!--                outlined-->
+<!--                v-model="date"-->
+<!--                mask="date"-->
+<!--                :rules="['date']"-->
+<!--              >-->
+<!--                <template v-slot:append>-->
+<!--                  <q-icon name="event" class="cursor-pointer">-->
+<!--                    <q-popup-proxy-->
+<!--                      cover-->
+<!--                      transition-show="scale"-->
+<!--                      transition-hide="scale"-->
+<!--                    >-->
+<!--                      <q-date v-model="datee">-->
+<!--                        <div class="row items-center justify-end">-->
+<!--                          <q-btn-->
+<!--                            v-close-popup-->
+<!--                            label="Close"-->
+<!--                            color="primary"-->
+<!--                            flat-->
+<!--                          />-->
+<!--                        </div>-->
+<!--                      </q-date>-->
+<!--                    </q-popup-proxy>-->
+<!--                  </q-icon>-->
+<!--                </template>-->
+<!--              </q-input>-->
             </q-item>
           </div>
           <div class="col-6">
@@ -284,7 +297,8 @@
                 v-model="materialStatus"
                 class="full-width"
                 :options="optionsmaterial"
-                label="- Material Status  -"
+                label="- Marital Status  -"
+                hint="Status Perkawinan"
               />
             </q-item>
           </div>
@@ -296,6 +310,7 @@
                 outlined
                 type="text"
                 label="Mother Name"
+                hint="Nama Ibu"
               ></q-input>
             </q-item>
           </div>
@@ -307,6 +322,7 @@
                 outlined
                 type="number"
                 label="Student Number"
+                hint="Nomor Induk Siswa"
               ></q-input>
             </q-item>
           </div>
@@ -318,6 +334,7 @@
                 outlined
                 type="number"
                 label="Birth Certificate Number*"
+                hint="Nomor Akte Kelahiran"
               ></q-input>
             </q-item>
           </div>
@@ -363,6 +380,7 @@
                 v-model="card_detail.name"
                 type="text"
                 label="Elementary School*"
+                hint="SD Sederajat"
               />
             </q-item>
           </div>
@@ -375,6 +393,7 @@
                 v-model="card_detail.name"
                 type="number"
                 label="Period (Months/Years)*"
+                hint="Lulusan (Bulan/Tahun)"
               />
             </q-item>
           </div>
@@ -387,6 +406,7 @@
                 v-model="card_detail.name"
                 type="text"
                 label="Junior High School*"
+                hint="SMP Sederajat"
               />
             </q-item>
           </div>
@@ -399,6 +419,7 @@
                 v-model="card_detail.name"
                 type="number"
                 label="Period (Months/Years)*"
+                hint="Lulusan (Bulan/Tahun)"
               />
             </q-item>
           </div>
@@ -411,6 +432,7 @@
                 v-model="card_detail.name"
                 type="text"
                 label="Senior High School*"
+                hint="SMA Sederajat"
               />
             </q-item>
           </div>
@@ -423,6 +445,7 @@
                 v-model="card_detail.name"
                 type="number"
                 label="Period (Months/Years)*"
+                hint="Lulusan (Bulan/Tahun)"
               />
             </q-item>
           </div>
@@ -491,6 +514,7 @@
                 class="full-width"
                 :options="optionsfinancial"
                 label="- Financial Support  -"
+                hint="Bantuan Keuangan"
               />
             </q-item>
           </div>
@@ -549,23 +573,236 @@
       >
 
         <div class="row">
-          <div class="col-1"></div>
-          <div class="col-5">
+          <div class="col-2"></div>
+          <div class="col-4">
             <div class="q-pa-md">
               <div class="q-gutter-y-md column" style="max-width: 300px">
-                <q-file clearable dense filled color="purple-12" v-model="model" label="Select File"/>
+                <q-file filled bottom-slots v-model="model" label="Senior High School Certificate" counter>
+                  <template v-slot:prepend>
+                    <q-icon name="cloud_upload" @click.stop.prevent />
+                  </template>
+                  <template v-slot:append>
+                    <q-icon name="close" @click.stop.prevent="model = null" class="cursor-pointer" />
+                  </template>
 
-                <!-- equivalent -->
-                <q-file color="green" filled v-model="model" label="Label">
-                  <template v-if="model" v-slot:append>
-                    <q-icon name="cancel" @click.stop.prevent="model = null" class="cursor-pointer"/>
+                  <template v-slot:hint>
+                    Ijazah Terakhir ( SMA/ Sederajat) Legalisir dalam Bahasa Inggris
                   </template>
                 </q-file>
               </div>
             </div>
           </div>
-          <div class="col-5"></div>
-          <div class="col-1"></div>
+          <div class="col-4">
+            <div class="q-pa-md">
+              <div class="q-gutter-y-md column" style="max-width: 300px">
+                (ini untuk preview)
+              </div>
+            </div>
+          </div>
+          <div class="col-2"></div>
+
+<!--          file kedua-->
+          <div class="col-2"></div>
+          <div class="col-4">
+            <div class="q-pa-md">
+              <div class="q-gutter-y-md column" style="max-width: 300px">
+                <q-file filled bottom-slots v-model="model" label="Transcripts (Legalized in English)" counter>
+                  <template v-slot:prepend>
+                    <q-icon name="cloud_upload" @click.stop.prevent />
+                  </template>
+                  <template v-slot:append>
+                    <q-icon name="close" @click.stop.prevent="model = null" class="cursor-pointer" />
+                  </template>
+
+                  <template v-slot:hint>
+                    Transkrip Nilai (Legalisir dalam Bahasa Inggris)
+                  </template>
+                </q-file>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="q-pa-md">
+              <div class="q-gutter-y-md column" style="max-width: 300px">
+                (ini untuk preview)
+              </div>
+            </div>
+          </div>
+          <div class="col-2"></div>
+
+<!--          file ketiga-->
+          <div class="col-2"></div>
+          <div class="col-4">
+            <div class="q-pa-md">
+              <div class="q-gutter-y-md column" style="max-width: 300px">
+                <q-file filled bottom-slots v-model="model" label="Letter of Good Behaviour from the local School or Police" counter>
+                  <template v-slot:prepend>
+                    <q-icon name="cloud_upload" @click.stop.prevent />
+                  </template>
+                  <template v-slot:append>
+                    <q-icon name="close" @click.stop.prevent="model = null" class="cursor-pointer" />
+                  </template>
+
+                  <template v-slot:hint>
+                    Surat Kelakuan Baik dari Sekolah atau Kepolisian
+                  </template>
+                </q-file>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="q-pa-md">
+              <div class="q-gutter-y-md column" style="max-width: 300px">
+                (ini untuk preview)
+              </div>
+            </div>
+          </div>
+          <div class="col-2"></div>
+
+<!-- File Keempat -->
+          <div class="col-2"></div>
+          <div class="col-4">
+            <div class="q-pa-md">
+              <div class="q-gutter-y-md column" style="max-width: 300px">
+                <q-file filled bottom-slots v-model="model" label="Letter of Permission from Parents (Indonesia and English vers)" counter>
+                  <template v-slot:prepend>
+                    <q-icon name="cloud_upload" @click.stop.prevent />
+                  </template>
+                  <template v-slot:append>
+                    <q-icon name="close" @click.stop.prevent="model = null" class="cursor-pointer" />
+                  </template>
+
+                  <template v-slot:hint>
+                    Surat Izin Orang Tua (dalam Bahasa Indonesia dan Bahasa Inggris)
+                  </template>
+                </q-file>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="q-pa-md">
+              <div class="q-gutter-y-md column" style="max-width: 300px">
+                (ini untuk preview)
+              </div>
+            </div>
+          </div>
+          <div class="col-2"></div>
+
+<!-- File Kelima -->
+          <div class="col-2"></div>
+          <div class="col-4">
+            <div class="q-pa-md">
+              <div class="q-gutter-y-md column" style="max-width: 300px">
+                <q-file filled bottom-slots v-model="model" label="4x6 color photo (JPG)" counter>
+                  <template v-slot:prepend>
+                    <q-icon name="cloud_upload" @click.stop.prevent />
+                  </template>
+                  <template v-slot:append>
+                    <q-icon name="close" @click.stop.prevent="model = null" class="cursor-pointer" />
+                  </template>
+
+                  <template v-slot:hint>
+                    Pas Photo/ photo card 4x6 warna (JPG)
+                  </template>
+                </q-file>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="q-pa-md">
+              <div class="q-gutter-y-md column" style="max-width: 300px">
+                (ini untuk preview)
+              </div>
+            </div>
+          </div>
+          <div class="col-2"></div>
+
+<!-- File Keenam -->
+          <div class="col-2"></div>
+          <div class="col-4">
+            <div class="q-pa-md">
+              <div class="q-gutter-y-md column" style="max-width: 300px">
+                <q-file filled bottom-slots v-model="model" label="ID card scan" counter>
+                  <template v-slot:prepend>
+                    <q-icon name="cloud_upload" @click.stop.prevent />
+                  </template>
+                  <template v-slot:append>
+                    <q-icon name="close" @click.stop.prevent="model = null" class="cursor-pointer" />
+                  </template>
+
+                  <template v-slot:hint>
+                    Scan Kartu Identitas / KTP
+                  </template>
+                </q-file>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="q-pa-md">
+              <div class="q-gutter-y-md column" style="max-width: 300px">
+                (ini untuk preview)
+              </div>
+            </div>
+          </div>
+          <div class="col-2"></div>
+
+<!-- File Ketujuh-->
+          <div class="col-2"></div>
+          <div class="col-4">
+            <div class="q-pa-md">
+              <div class="q-gutter-y-md column" style="max-width: 300px">
+                <q-file filled bottom-slots v-model="model" label="English Certificate (if any)" counter>
+                  <template v-slot:prepend>
+                    <q-icon name="cloud_upload" @click.stop.prevent />
+                  </template>
+                  <template v-slot:append>
+                    <q-icon name="close" @click.stop.prevent="model = null" class="cursor-pointer" />
+                  </template>
+
+                  <template v-slot:hint>
+                    Sertifikat Bahasa Inggris (Jika ada)
+                  </template>
+                </q-file>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="q-pa-md">
+              <div class="q-gutter-y-md column" style="max-width: 300px">
+                (ini untuk preview)
+              </div>
+            </div>
+          </div>
+          <div class="col-2"></div>
+
+<!-- File Kedelapan -->
+          <div class="col-2"></div>
+          <div class="col-4">
+            <div class="q-pa-md">
+              <div class="q-gutter-y-md column" style="max-width: 300px">
+                <q-file filled bottom-slots v-model="model" label="Scan of Passport Biodata (If Any)" counter>
+                  <template v-slot:prepend>
+                    <q-icon name="cloud_upload" @click.stop.prevent />
+                  </template>
+                  <template v-slot:append>
+                    <q-icon name="close" @click.stop.prevent="model = null" class="cursor-pointer" />
+                  </template>
+
+                  <template v-slot:hint>
+                    Scan Biodata Pasport (Jika Ada)
+                  </template>
+                </q-file>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="q-pa-md">
+              <div class="q-gutter-y-md column" style="max-width: 300px">
+                (ini untuk preview)
+              </div>
+            </div>
+          </div>
+          <div class="col-2"></div>
         </div>
 
         <q-stepper-navigation>
@@ -597,22 +834,12 @@ export default {
 
   data () {
     return {
-      // coba select
-      selectedClass: ref(null),
-      fk: [
-        { name: 'FAKULTAS TEKNIK', code: 'A', factor: 1 },
-        { name: 'FAKULTAS DUA', code: 'B', factor: 2 }
-      ],
-      vagons: [],
-      selectedVagon: ref(null),
-      seats: [],
-      selectedSeat: '',
-
+      rGender: ref('male'),
       step: ref(1),
       address_detail: ref({}),
       card_detail: ref({}),
-      date: ref('2019/02/01'),
-      datee: ref('2019/02/01'),
+      birthday: ref(' '),
+      passdate: ref(' '),
       checkMale: ref(false),
       checkFemale: ref(false),
       modelF: ref(null),
@@ -625,7 +852,6 @@ export default {
       optionsmaterial: ['Merried', 'Not Merried'],
       optionsfinancial: ['Scholarship', 'Personal Finance'],
       optionswarga: ['WNI', 'WNA'],
-      optionsprodi: ['Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'],
       optionsfakultas: [
         'Fakultas Ilmu Pendidikan dan Perguruan',
         'Fakultas Teknik',
@@ -636,25 +862,6 @@ export default {
         'Fakultas Agama Islam',
         'Fakultas Hukum'
       ],
-
-      value: [],
-      options:
-        [
-          {
-            fakultas: 'Fakultas Teknik',
-            prodi: ['TI1', 'TI2']
-          },
-
-          {
-            fakultas: 'Fakultas Ekonomi',
-            prodi: ['TI1', 'TI2']
-          },
-
-          {
-            fakultas: 'Fakultas Psikologi',
-            prodi: ['TI1', 'TI2']
-          }
-        ],
       oldPickedFile: null,
       file: ref(null)
     }
