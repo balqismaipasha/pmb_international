@@ -22,7 +22,6 @@
                 :options="optionsfakultas"
                 label="- Select Faculty -"
                 hint="Pilih Fakultas"
-                :rules="[myRule]"
               />
             </q-item>
           </div>
@@ -828,12 +827,14 @@
 
 <script>
 import { ref } from 'vue'
+import { api } from 'boot/axios'
+
+const isi = []
 
 export default {
-  name: 'StudentRegistration',
-
   data () {
     return {
+      isi,
       rGender: ref('male'),
       step: ref(1),
       address_detail: ref({}),
@@ -851,27 +852,23 @@ export default {
       rVerbal: ref('Normal'),
       optionsmaterial: ['Merried', 'Not Merried'],
       optionsfinancial: ['Scholarship', 'Personal Finance'],
-      optionswarga: ['WNI', 'WNA'],
-      optionsfakultas: [
-        'Fakultas Ilmu Pendidikan dan Perguruan',
-        'Fakultas Teknik',
-        'Fakultas Pertanian',
-        'Fakultas Psikologi',
-        'Fakultas Ilmu Sosial dan Ekonomi',
-        'Fakultas Ekonomi',
-        'Fakultas Agama Islam',
-        'Fakultas Hukum'
-      ],
+      optionswarga: [],
+      optionsfakultas: [],
       oldPickedFile: null,
       file: ref(null)
     }
   },
-  methods: {
-    myRule (val) {
-      if (val === null) {
-        return 'You must make a selection!'
+  async created () {
+    const response = await api.post('/api/data/options/prodi')
+    const namaFK = response.data.data.prodi
+    const data = []
+    namaFK.forEach(function (v, i) {
+      if (!data.includes(v.nama_fakultas)) {
+        data.push(v.nama_fakultas)
       }
-    }
+    })
+    console.log(data)
+    this.optionsfakultas = data
   }
 }
 </script>
