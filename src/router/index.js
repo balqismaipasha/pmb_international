@@ -31,7 +31,7 @@ export default route(function (/* { store, ssrContext } */) {
 
   Router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.autentikasi)) {
-      if (LocalStorage.getItem('datauser') === null || LocalStorage.getItem('datauser') === undefined) {
+      if (LocalStorage.getItem('token') === null || LocalStorage.getItem('token') === undefined) {
         next({
           path: '/auth/login'
         })

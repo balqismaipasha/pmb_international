@@ -124,13 +124,13 @@ export default {
   },
   methods: {
     onSubmit: function () {
-      if (this.form.password === this.form.cpassword) {
+      if (this.form.password !== this.form.cpassword) {
         this.$q.notify({
           color: 'negative',
           message: 'Password does not match',
           icon: 'ion-close'
         })
-      } else if (this.form.password !== this.form.cpassword) {
+      } else if (this.form.password === this.form.cpassword) {
         api.post('/api/registration/new-user', {
           email: this.form.email,
           no_hp: this.form.no_hp,

@@ -37,7 +37,7 @@
           </q-card-section>
 
           <q-card-section>
-            <q-form class="q-gutter" @submit="onSubmit()">
+            <q-form class="q-gutter" @submit.prevent="onSubmit()">
 
               <q-input
                 filled
@@ -146,7 +146,8 @@ export default {
           icon: 'check_circle',
           position: 'top-right'
         })
-        this.$q.localStorage.set('datauser', res.data)
+        // console.log(res.data.data.token)
+        this.$q.localStorage.set('token', res.data.data.token)
         this.$router.push('/pmb')
       }).catch(err => {
         if ((err.response.data.error)) {
